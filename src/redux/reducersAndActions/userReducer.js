@@ -1,0 +1,42 @@
+/**
+ * Initial data for the reducer
+ */
+const userDraft = {
+  username: undefined,
+  isLoggedIn: false
+}
+
+/**
+ * Reducer of the state
+ * @param {object} state Redux state to be modified in a no mutation way
+ * @param {object} action  {type: string, ...} It contains mostly two fields. Type, which indicates the action to be done, and the payload which will be the data modified in the store
+ */
+const userReducer = (state = userDraft, action) => {
+  switch(action.type) {
+    case "SET_USERNAME":
+      return { ...state, username: action.username}
+    case "SET_IS_LOGGED_IN":
+      return { ...state, isLoggedIn: action.isLoggedIn}
+    default:
+      return {...state};
+  }
+}
+
+/**
+ * Actions to be executed when dispatch is called. This ones are received in the reducer function to update the store state
+ */
+const userActions = {
+  setUsername: (username) => ({
+    type: "SET_USERNAME",
+    username
+  }),
+  setIsLoggedIn: (isLoggedIn) => ({
+    type: "SET_IS_LOGGED_IN",
+    isLoggedIn
+  })
+}
+
+export {
+    userReducer,
+    userActions
+}
