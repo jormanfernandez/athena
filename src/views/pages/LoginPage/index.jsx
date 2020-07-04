@@ -8,7 +8,7 @@ import { Wait } from "views/components/Wait/Wait";
 
 /**
  * Component to be connected with redux. The name works as an identifier of the redux component
- * @param {object} props {username, userOperator} Props that are consistent 
+ * @param {object} props {store, operators} Props that are consistent 
  *                        with the state to props and dispatch on props
  * @returns {React.Component} It returns a React Component in JSX format
  */
