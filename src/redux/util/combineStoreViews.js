@@ -9,6 +9,6 @@ export const combineStoreViews = (views) => {
     for (let key in views) {
       selectedViews[key] = views[key](state);
     }
-    return {state: selectedViews};
+    return {store: selectedViews};
   }
 }
