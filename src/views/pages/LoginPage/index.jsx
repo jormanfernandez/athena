@@ -12,7 +12,7 @@ import { Wait } from "views/components/Wait/Wait";
  *                        with the state to props and dispatch on props
  * @returns {React.Component} It returns a React Component in JSX format
  */
-function RDXComponent ({state: { username }, operators: { userOperator } }){
+function RDXComponent ({store: { username }, operators: { userOperator } }){
   return (
     <Wait waitFor={[username]} fallback={<UserLogin userOperator={userOperator}/>}>
       {() => (
