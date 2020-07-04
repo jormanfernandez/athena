@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { userStoreView } from "redux/storeViews/userStoreView";
 import { combineStoreViews } from "redux/util/combineStoreViews";
-import { getUserOperator as userOperator } from "redux/operators/userOperator";
+import { combineOperators } from "redux/util/combineOperators";
+import { getUserOperator } from "redux/operators/userOperator";
 import { Wait } from "views/components/Wait/Wait";
 
 /**
@@ -11,7 +12,7 @@ import { Wait } from "views/components/Wait/Wait";
  *                        with the state to props and dispatch on props
  * @returns {React.Component} It returns a React Component in JSX format
  */
-function RDXComponent ({username, userOperator}){
+function RDXComponent ({state: { username }, operators: { userOperator } }){
   return (
     <Wait waitFor={[username]} fallback={<UserLogin userOperator={userOperator}/>}>
       {() => (
@@ -46,6 +47,9 @@ const UserLogin = ({userOperator}) => {
 const userSelector = combineStoreViews({
   username: (store) => userStoreView.username(store)
 });
+const userOperator = combineOperators({
+  userOperator: getUserOperator
+})
 
 /**
  * Returns the main component connected to the redux store with the state and dispatch on the props.

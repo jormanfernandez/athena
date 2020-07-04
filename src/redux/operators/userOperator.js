@@ -7,7 +7,7 @@ let userOperator = null;
  */
 export const getUserOperator = (dispatch) => {
     if (!userOperator) userOperator = new UserOperator(dispatch);
-    return { userOperator};
+    return userOperator;
 }
 
 /**
@@ -19,6 +19,9 @@ class UserOperator {
   }
 
   setName = name => {
+    if (!name) {
+      return false;
+    }
     this.dispatch(userActions.setUsername(name));
   }
 }

@@ -5,10 +5,10 @@
  */
 export const combineStoreViews = (views) => {
   return (state) => {
-    let selections = {};
-    for (let key of Object.keys(views)) {
-      selections[key] = views[key](state);
+    let selectedViews = {};
+    for (let key in views) {
+      selectedViews[key] = views[key](state);
     }
-    return selections;
+    return {state: selectedViews};
   }
 }
