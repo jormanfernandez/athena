@@ -44,14 +44,14 @@ const UserLogin = ({userOperator}) => {
   )
 }
 
-const userSelector = combineStoreViews({
+const storeSelectors = combineStoreViews({
   username: (store) => userStoreView.username(store)
 });
-const userOperator = combineOperators({
+const storeOperators = combineOperators({
   userOperator: getUserOperator
 })
 
 /**
  * Returns the main component connected to the redux store with the state and dispatch on the props.
  */
-export const LoginPage = connect(userSelector, userOperator)(RDXComponent);
+export const LoginPage = connect(storeSelectors, storeOperators)(RDXComponent);
