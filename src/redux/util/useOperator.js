@@ -1,4 +1,5 @@
-import { store } from "redux/store";
+import { useRef } from "react";
+import { useStore } from "react-redux";
 
 /**
  * 
@@ -6,5 +7,10 @@ import { store } from "redux/store";
  * @returns {object} Operators called
  */
 export const useOperator = (operator) => {
-  return operator(store);
+  const store = useStore();
+  const operatorRef = useRef(null);
+  if (operatorRef.current === null) {
+    operatorRef.current = operator(store)
+  }
+  return operatorRef.current;
 }
