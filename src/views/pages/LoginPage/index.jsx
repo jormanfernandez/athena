@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
 import { userStoreView } from "redux/storeViews/userStoreView";
-import { combineStoreViews } from "redux/util/combineStoreViews";
+import { combineStoreViews, Selector } from "redux/util/storeHelpers";
 import { useOperator } from "redux/util/useOperator";
 import { getUserOperator } from "redux/operators/userOperator";
 import { If } from "views/components/If";
@@ -12,7 +11,8 @@ import { If } from "views/components/If";
  *                        with the state to props and dispatch on props
  * @returns {React.Component} It returns a React Component in JSX format
  */
-function RDXComponent ({store: { username }}) {
+export function LoginPage () {
+  const { username } = Selector(userSelector);
   return (
     <If Conditions={[!!username]} Else={<UserLogin/>}>
       {() => (
@@ -45,7 +45,7 @@ const UserLogin = () => {
   )
 }
 
-const storeSelectors = combineStoreViews({
+const userSelector = combineStoreViews({
   username: (store) => userStoreView.username(store)
 });
 
@@ -53,8 +53,3 @@ const useUserOperator = () => {
   const userOperator = useOperator(getUserOperator);
   return userOperator;
 };
-
-/**
- * Returns the main component connected to the redux store with the state and dispatch on the props.
- */
-export const LoginPage = connect(storeSelectors)(RDXComponent);
