@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { userStoreView } from "redux/storeViews/userStoreView";
 import { combineStoreViews } from "redux/util/combineStoreViews";
-import { combineOperators } from "redux/util/combineOperators";
+import { useOperator } from "redux/util/useOperator";
 import { getUserOperator } from "redux/operators/userOperator";
 import { Wait } from "views/components/Wait/Wait";
 
@@ -12,9 +12,9 @@ import { Wait } from "views/components/Wait/Wait";
  *                        with the state to props and dispatch on props
  * @returns {React.Component} It returns a React Component in JSX format
  */
-function RDXComponent ({store: { username }, operators: { userOperator } }){
+function RDXComponent ({store: { username }}) {
   return (
-    <Wait waitFor={[username]} fallback={<UserLogin userOperator={userOperator}/>}>
+    <Wait waitFor={[username]} fallback={<UserLogin/>}>
       {() => (
         <div>
             Buenas, {username}.
@@ -29,7 +29,8 @@ function RDXComponent ({store: { username }, operators: { userOperator } }){
  * @param {object} props This ones are the props that can be received in the Functional component.
  * @returns {React.Component} It returns a functional component
  */
-const UserLogin = ({userOperator}) => {
+const UserLogin = () => {
+  const userOperator = useUserOperator();
   const [nick, setNick] = useState("");
   const useSetNick = () => {
     userOperator.setName(nick);
@@ -47,11 +48,13 @@ const UserLogin = ({userOperator}) => {
 const storeSelectors = combineStoreViews({
   username: (store) => userStoreView.username(store)
 });
-const storeOperators = combineOperators({
-  userOperator: getUserOperator
-})
+
+const useUserOperator = () => {
+  const userOperator = useOperator(getUserOperator);
+  return userOperator;
+};
 
 /**
  * Returns the main component connected to the redux store with the state and dispatch on the props.
  */
-export const LoginPage = connect(storeSelectors, storeOperators)(RDXComponent);
+export const LoginPage = connect(storeSelectors)(RDXComponent);

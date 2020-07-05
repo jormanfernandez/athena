@@ -3,10 +3,10 @@ import { userActions } from "redux/reducersAndActions/userReducer";
 let userOperator = null;
 /**
  * Get the operator being used to update the store
- * @param {function} dispatch dispatch function used in the store to modified data with the reducers
+ * @param {object} store Store object with the redux data
  */
-export const getUserOperator = (dispatch) => {
-    if (!userOperator) userOperator = new UserOperator(dispatch);
+export const getUserOperator = (store) => {
+    if (!userOperator) userOperator = new UserOperator(store);
     return userOperator;
 }
 
@@ -14,14 +14,14 @@ export const getUserOperator = (dispatch) => {
  * Class that holds the functions and modifies the data
  */
 class UserOperator {
-  constructor(dispatch) {
-    this.dispatch = dispatch;
+  constructor(store) {
+    this.store = store;
   }
 
   setName = name => {
     if (!name) {
       return false;
     }
-    this.dispatch(userActions.setUsername(name));
+    this.store.dispatch(userActions.setUsername(name));
   }
 }
