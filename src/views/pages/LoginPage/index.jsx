@@ -4,7 +4,7 @@ import { userStoreView } from "redux/storeViews/userStoreView";
 import { combineStoreViews } from "redux/util/combineStoreViews";
 import { useOperator } from "redux/util/useOperator";
 import { getUserOperator } from "redux/operators/userOperator";
-import { Wait } from "views/components/Wait/Wait";
+import { If } from "views/components/If";
 
 /**
  * Component to be connected with redux. The name works as an identifier of the redux component
@@ -14,13 +14,13 @@ import { Wait } from "views/components/Wait/Wait";
  */
 function RDXComponent ({store: { username }}) {
   return (
-    <Wait waitFor={[username]} fallback={<UserLogin/>}>
+    <If Conditions={[!!username]} Else={<UserLogin/>}>
       {() => (
         <div>
             Buenas, {username}.
         </div>
       )}
-    </Wait>
+    </If>
   );
 }
 
