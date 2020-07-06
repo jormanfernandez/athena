@@ -1,0 +1,12 @@
+@import "./mixins";
+@import "./materialize";
+@import "./icon.css";
+
+body {
+  margin: auto;
+  padding: 0;
+}
+
+main.wrapper {
+  @include wrapper();
+}

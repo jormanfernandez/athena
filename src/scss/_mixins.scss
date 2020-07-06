@@ -1,0 +1,9 @@
+@import "./colors";
+@import "./variables";
+
+@mixin wrapper() {
+  width: 100vw;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  min-height: calc(100vh - 153px);
+}
