@@ -10,7 +10,7 @@ export const useOperator = (operator) => {
   const store = useStore();
   const operatorRef = useRef(null);
   if (operatorRef.current === null) {
-    operatorRef.current = operator(store)
+    operatorRef.current = operator(store);
   }
   return operatorRef.current;
 }
