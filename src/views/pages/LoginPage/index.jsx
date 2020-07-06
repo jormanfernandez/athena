@@ -7,8 +7,6 @@ import { If } from "views/components/If";
 
 /**
  * Component to be connected with redux. The name works as an identifier of the redux component
- * @param {object} props {store, operators} Props that are consistent 
- *                        with the state to props and dispatch on props
  * @returns {jsx} It returns a React Component in JSX format
  */
 export const LoginPage = () => {
@@ -26,7 +24,6 @@ export const LoginPage = () => {
 
 /**
  * Content summary that can be included in the redux component
- * @param {object} props This ones are the props that can be received in the Functional component.
  * @returns {jsx} It returns a functional component
  */
 const UserLogin = () => {
