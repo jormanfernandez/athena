@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { useStore } from "react-redux";
-
 /**
  * 
  * @param {object} operator {key<string>: value<function>} Operator to be used passing the store

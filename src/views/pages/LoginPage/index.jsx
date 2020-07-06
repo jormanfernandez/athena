@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
 import { userStoreView } from "redux/storeViews/userStoreView";
-import { combineStoreViews } from "redux/util/combineSelectors";
+import { combineStoreViews, useStoreSelector } from "redux/util/storeHelpers";
 import { useOperator } from "redux/util/useOperator";
 import { getUserOperator } from "redux/operators/userOperator";
 import { If } from "views/components/If";
@@ -12,7 +11,8 @@ import { If } from "views/components/If";
  *                        with the state to props and dispatch on props
  * @returns {jsx} It returns a React Component in JSX format
  */
-function RDXComponent ({ store: { username } }) {
+export const LoginPage = () => {
+  const { username } = useStoreSelector(userSelector);
   return (
     <If Conditions={[!!username]} Else={<UserLogin/>}>
       {() => (
@@ -27,7 +27,7 @@ function RDXComponent ({ store: { username } }) {
 /**
  * Content summary that can be included in the redux component
  * @param {object} props This ones are the props that can be received in the Functional component.
- * @returns {React.Component} It returns a functional component
+ * @returns {jsx} It returns a functional component
  */
 const UserLogin = () => {
   const userOperator = useUserOperator();
@@ -35,7 +35,6 @@ const UserLogin = () => {
   const useSetNick = () => {
     userOperator.setName(nick);
   }
-
   return (
     <>
       <input type="text" value={nick} onChange={e => setNick(e.target.value)}/>
@@ -53,5 +52,3 @@ const useUserOperator = () => {
   const userOperator = useOperator(getUserOperator);
   return userOperator;
 };
-
-export const LoginPage = connect(userSelector)(RDXComponent);
