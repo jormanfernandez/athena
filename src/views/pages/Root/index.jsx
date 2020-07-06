@@ -1,11 +1,12 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { PAGES } from "routes/pages";
+import { PAGES, getRoute, onMounted } from "routes/pages";
 import { LoginPage } from "views/pages/LoginPage";
 
 export const Root = () => (
   <Switch>
-    <Route {...PAGES.login}>
+    <Route {...getRoute(PAGES.login)}>
+      {onMounted(PAGES.login)}
       <LoginPage/>
     </Route>
   </Switch>
