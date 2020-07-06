@@ -31,4 +31,8 @@ export const PAGES = {
       console.log("Login Mounted");
     } 
   },
+  styleguide: {
+    path: "/styleguide",
+    exact: true
+  }
 }
