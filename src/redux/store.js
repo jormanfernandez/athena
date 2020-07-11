@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from "redux";
 import { combinedReducers } from "redux/reducersAndActions/combinedReducers";
 
 const batchActions = ({dispatch}) => next => action => {
-  return Array.isArray(action) ? action.filter(Boolean).map(dispatch) : next(action);
+  return Array.isArray(action) ? action.map(dispatch) : next(action);
 }
 const batchCreateStore = applyMiddleware(
   batchActions,
