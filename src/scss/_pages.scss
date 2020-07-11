@@ -10,3 +10,15 @@ body {
 main.wrapper {
   @include wrapper();
 }
+
+.inline-error-message {
+  @include inline-message($error-color-1, $error-color-1);
+}
+.inline-warning-message {
+  @include inline-message($warning-color-1, $warning-color-1);
+}
+
+
+.container > * {
+  margin: auto;
+}
