@@ -3,7 +3,24 @@
 
 @mixin wrapper() {
   width: 100vw;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  min-height: calc(100vh - 153px);
+  margin: 10px auto;
+  min-height: calc(100vh - 134px);
+  display: block;
 }
+
+@mixin full-center() {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin inline-message($border-color, $font-color) {
+  border: 1px solid $border-color;
+  color: $font-color;
+  width: $space-7;
+  text-align: center;
+  display: block;
+  padding: 3px;
+}
+

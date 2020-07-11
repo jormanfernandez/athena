@@ -23,4 +23,21 @@ export const combineStoreViews = (views) => {
       return selectedViews;
     }
   }
+
+/**
+ * This combines the operators when connect is used
+ * @param {object} views {key: function} operators that are going to mutate data
+ * @returns {function} Function that reads from the state the requested values
+ */
+export const combineOperators = (operators) => {
+  return (dispatch) => {
+    let selectedOperators = {};
+    for (let key in operators) {
+      selectedOperators[key] = operators[key](dispatch);
+    }
+    return {
+      operators: selectedOperators
+    };
+  }
+}
   

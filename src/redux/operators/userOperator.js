@@ -1,14 +1,15 @@
+import { userAbstractor } from "services/userAbstractor";
 import { userActions } from "redux/reducersAndActions/userReducer";
-import { userStoreView } from "redux/storeViews/userStoreView";
+import { getMessage } from "util/errorCodes";
 
 let userOperator = null;
 /**
  * Get the operator being used to update the store
- * @param {object} dispatch Dispatch function to redux
+ * @param {object} store Store object from redux
  */
 export const getUserOperator = (store) => {
-    if (!userOperator) userOperator = new UserOperator(store);
-    return userOperator;
+  if (!userOperator) userOperator = new UserOperator(store);
+  return userOperator;
 }
 
 /**
@@ -19,13 +20,32 @@ class UserOperator {
     this.store = store;
   }
 
-  setName = name => {
-    if (!name) {
-      return false;
+  login = async ({username, password}) => {
+    if (!username || !password) {
+      this.store.dispatch(userActions.setError(getMessage("UE01")));
+      return;
     }
-    /** STUB: Shows how to read data outside components */
-    const loggedName = userStoreView.username(this.store.getState());
-    console.log(loggedName);
-    this.store.dispatch(userActions.setUsername(name));
+    this.store.dispatch(userActions.setError(undefined));
+    try {
+      const { success, errorCode, user} = await userAbstractor.authenticate(username, password);
+      if (!success) {
+        this.store.dispatch(userActions.setError(getMessage(errorCode)));
+        return;
+      }
+
+      //FIXME: Apply middleware for batch actions
+      for (const action of [
+        userActions.setUsername(user.username),
+        userActions.setSubscriptions(user.details.setSubscriptions),
+        userActions.setName(`${user.details.name} ${user.details.lastname}`),
+        userActions.setIsLoggedIn(true)
+      ]) {
+        this.store.dispatch(action);
+      }
+      // FIXME: Apply redirection to dashboard
+    } catch (err) {
+      console.log(`REQUEST ABSTRACTOR ERROR ${err}`);
+      this.store.dispatch(userActions.setError(getMessage()));
+    }
   }
 }
