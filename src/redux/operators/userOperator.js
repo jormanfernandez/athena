@@ -1,5 +1,6 @@
 import { userAbstractor } from "services/userAbstractor";
 import { userActions } from "redux/reducersAndActions/userReducer";
+import { logError } from "redux/util/logError";
 import { getMessage } from "util/errorCodes";
 
 let userOperator = null;
@@ -41,7 +42,7 @@ class UserOperator {
       ]);
       // FIXME: Apply redirection to dashboard
     } catch (err) {
-      console.log(`REQUEST ABSTRACTOR ERROR ${err}`);
+      logError(this.store, "UserOperator.login: Error in promise", err);
       this.store.dispatch(userActions.setError(getMessage()));
     }
   }
