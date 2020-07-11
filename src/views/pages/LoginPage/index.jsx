@@ -48,7 +48,7 @@ const LoginForm = () => {
               {({ input, meta }) => (
                 <div>
                   <input {...input} type="text" placeholder="Usuario" disabled={submitting}/>
-                  {meta.error && meta.touched && <ErrorMessage error={meta.error}/>}
+                  {input.value && meta.error && meta.touched && <ErrorMessage error={meta.error}/>}
                 </div>
               )}
             </Field>
@@ -59,7 +59,7 @@ const LoginForm = () => {
               {({ input, meta }) => (
                 <div>
                   <input {...input} type="password" placeholder="Contraseña" disabled={submitting}/>
-                  {meta.error && meta.touched && <ErrorMessage error={meta.error}/>}
+                  {input.value && meta.error && meta.touched && <ErrorMessage error={meta.error}/>}
                 </div>
               )}
             </Field>
