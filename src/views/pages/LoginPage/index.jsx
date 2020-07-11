@@ -9,7 +9,7 @@ import { Header } from "views/components/Header";
 import { Footer } from "views/components/Footer";
 import { ErrorMessage } from "views/components/ErrorMessage";
 import { Loading } from "views/components/Loading";
-import { validateField } from "util/form/formValidator";
+import { validateField, showErrorField } from "util/form/formValidator";
 
 import "./_style.scss";
 
@@ -48,7 +48,7 @@ const LoginForm = () => {
               {({ input, meta }) => (
                 <div>
                   <input {...input} type="text" placeholder="Usuario" disabled={submitting}/>
-                  {input.value && meta.error && meta.touched && <ErrorMessage error={meta.error}/>}
+                  {showErrorField(input, meta) && <ErrorMessage error={meta.error}/>}
                 </div>
               )}
             </Field>
@@ -59,7 +59,7 @@ const LoginForm = () => {
               {({ input, meta }) => (
                 <div>
                   <input {...input} type="password" placeholder="Contraseña" disabled={submitting}/>
-                  {input.value && meta.error && meta.touched && <ErrorMessage error={meta.error}/>}
+                  {showErrorField(input, meta) && <ErrorMessage error={meta.error}/>}
                 </div>
               )}
             </Field>
