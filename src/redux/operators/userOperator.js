@@ -33,15 +33,12 @@ class UserOperator {
         return;
       }
 
-      //FIXME: Apply middleware for batch actions
-      for (const action of [
+      this.store.dispatch([
         userActions.setUsername(user.username),
         userActions.setSubscriptions(user.details.setSubscriptions),
         userActions.setName(`${user.details.name} ${user.details.lastname}`),
         userActions.setIsLoggedIn(true)
-      ]) {
-        this.store.dispatch(action);
-      }
+      ]);
       // FIXME: Apply redirection to dashboard
     } catch (err) {
       console.log(`REQUEST ABSTRACTOR ERROR ${err}`);
