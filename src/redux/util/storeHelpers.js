@@ -15,29 +15,12 @@ export function useStoreSelector(selector) {
  * @returns {function} Function that reads from the state the requested values
  */
 export const combineStoreViews = (views) => {
-    return (state) => {
-      let selectedViews = {};
-      for (let key in views) {
-        selectedViews[key] = views[key](state);
-      }
-      return selectedViews;
+  return (state) => {
+    let selectedViews = {};
+    for (let key in views) {
+      selectedViews[key] = views[key](state);
     }
-  }
-
-/**
- * This combines the operators when connect is used
- * @param {object} views {key: function} operators that are going to mutate data
- * @returns {function} Function that reads from the state the requested values
- */
-export const combineOperators = (operators) => {
-  return (dispatch) => {
-    let selectedOperators = {};
-    for (let key in operators) {
-      selectedOperators[key] = operators[key](dispatch);
-    }
-    return {
-      operators: selectedOperators
-    };
+    return selectedViews;
   }
 }
   
