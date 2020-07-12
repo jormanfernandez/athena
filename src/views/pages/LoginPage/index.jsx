@@ -25,8 +25,6 @@ export const LoginPage = () => (
   </>
 );
 
-
-
 /**
  * Content summary that can be included in the redux component
  * @returns {jsx} It returns a functional component

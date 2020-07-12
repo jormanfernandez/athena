@@ -17,12 +17,10 @@ const runValidations = (value, validations, messages) => {
 export const formValidator = values => {
   let errors = {};
   for (let key in values) {
-    if (!validationConfig[key]) {
-      continue;
-    }
-    const isValid = runValidations(values[key], validationConfig[key], validationMessages[key]);
+    const validations = validateField(key);
+    const isValid = validations(values[key]);
     if (isValid !== true) {
-      errors[key]= isValid;
+      errors[key] = isValid;
     }
   }
   return errors;
@@ -30,7 +28,7 @@ export const formValidator = values => {
 
 export const validateField = field => {
   return value => {
-    let error = undefined;
+    let error = true;
 
     if (!validationConfig[field]) {
       return error;
