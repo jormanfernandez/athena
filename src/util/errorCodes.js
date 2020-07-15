@@ -1,10 +1,6 @@
-const MESSAGES = {
-  UE01: () => "Usuario o contraseña incorrecta",
-  E01: () => "Servicio no implementado",
-  UNKNOW: () => "Ha ocurrido un error inesperado, por favor pruebe nuevamente en unos minutos"
-}
+import { textHelper } from "util/textHelper";
 
-const getMessage = message => (MESSAGES[message] || MESSAGES.UNKNOW)();
+const getMessage = message => (textHelper("content", "errorCodes", message) || textHelper("content", "errorCodes", "UNKNOW"));
 
 export {
   getMessage

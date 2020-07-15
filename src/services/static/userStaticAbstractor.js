@@ -13,7 +13,10 @@ function authenticate(username, password) {
         name: "Jorman",
         lastname: "Fernandez",
         email: "tuviejaentanga@hotmail.com",
-        subscriptions: []
+        profile: {
+          type: "admin",
+          name: "Administrador"
+        }
       }
     }
   ];

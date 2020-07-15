@@ -36,7 +36,7 @@ class UserOperator {
 
       this.store.dispatch([
         userActions.setUsername(user.username),
-        userActions.setSubscriptions(user.details.subscriptions),
+        userActions.setProfile(user.details.profile),
         userActions.setName(`${user.details.name} ${user.details.lastname}`),
         userActions.setIsLoggedIn(true)
       ]);

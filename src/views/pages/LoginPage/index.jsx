@@ -10,6 +10,7 @@ import { Footer } from "views/components/Footer";
 import { ErrorMessage } from "views/components/ErrorMessage";
 import { Loading } from "views/components/Loading";
 import { validateField, showErrorField } from "util/form/formValidator";
+import { textHelper } from "util/textHelper";
 
 import "./_style.scss";
 
@@ -45,7 +46,7 @@ const LoginForm = () => {
               >
               {({ input, meta }) => (
                 <div>
-                  <input {...input} type="text" placeholder="Usuario" disabled={submitting}/>
+                  <input {...input} type="text" placeholder={textHelper("content", "login", "input", "username")} disabled={submitting}/>
                   {showErrorField(input, meta) && <ErrorMessage error={meta.error}/>}
                 </div>
               )}
@@ -56,7 +57,7 @@ const LoginForm = () => {
               >
               {({ input, meta }) => (
                 <div>
-                  <input {...input} type="password" placeholder="Contraseña" disabled={submitting}/>
+                  <input {...input} type="password" placeholder={textHelper("content", "login", "input", "password")} disabled={submitting}/>
                   {showErrorField(input, meta) && <ErrorMessage error={meta.error}/>}
                 </div>
               )}
@@ -69,7 +70,7 @@ const LoginForm = () => {
                 className="btn waves-effect waves-light" 
                 type="submit"
               >
-                Ingresar
+                {textHelper("content", "login", "button", "submit")}
               </button>
             )}
           </form>
