@@ -1,12 +1,4 @@
-import spanish from "languages/spanish.json";
-import { basePath } from "routes/paths";
-
-const getLanguage = () => {
-  switch(basePath) {
-    default:
-      return {...spanish};
-  }
-}
+import { getLanguage } from "util/languageHelper";
 
 export const textHelper = (...args) => {
   let text = getLanguage();

@@ -6,6 +6,7 @@
     }
   },
   "content": {
+    "languageSelector": "Lang",
     "formValidations": {
       "username": {
         "minLength": "El nombre de usuario debe tener minimo 3 caracteres",
