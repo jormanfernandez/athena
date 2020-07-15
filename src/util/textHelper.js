@@ -3,10 +3,8 @@ import { basePath } from "routes/paths";
 
 const getLanguage = () => {
   switch(basePath) {
-    case "es":
     default:
-    return {...spanish};
-    
+      return {...spanish};
   }
 }
 
