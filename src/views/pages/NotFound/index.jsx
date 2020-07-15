@@ -22,4 +22,4 @@ const Content = () => (
       </p>
     </div>
   </main>
-)
+);

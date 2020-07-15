@@ -4,19 +4,12 @@ import { getAvailableLanguages, onChangeLanguage } from "util/languageHelper";
 
 export const LanguageSelector = () => {
   const availableLanguages = getAvailableLanguages();
-  return (
+  const keys = Object.keys(availableLanguages);
+  return keys.length > 1 && (
     <div className="input-field col s12 left">
       <select value={basePath} onChange={onChangeLanguage}>
-        <Option values={availableLanguages}/>
+      {keys.map((key, idx) => (<option value={key} key={idx}>{availableLanguages[key]}</option>))}
       </select>
     </div>
-  )
-}
-
-const Option = ({ values }) => {
-  return (
-    <>
-      {Object.keys(values).map((key, idx) => (<option value={key} key={idx}>{values[key]}</option>))}
-    </>
   )
 }
