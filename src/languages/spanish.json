@@ -1,0 +1,39 @@
+{
+  "header": {
+    "logo": {
+      "athena": "Athena Logo",
+      "partner": "Partner Logo"
+    }
+  },
+  "content": {
+    "formValidations": {
+      "username": {
+        "minLength": "El nombre de usuario debe tener minimo 3 caracteres",
+        "maxLength": "El nombre de usuario debe tener maximo 15 caracteres",
+        "required": "Debe introducir su usuario"
+      },
+      "password": {
+        "password": "La contraseña no cumple con el formato requerido",
+        "required": "Debe introducir una contraseña",
+        "minLength": "La contraseña debe tener minimo 8 caracteres"
+      }
+    },
+    "errorCodes": {
+      "UE01": "Usuario o contraseña incorrecta",
+      "E01": "Servicio no implementado",
+      "UNKNOW": "Ha ocurrido un error inesperado, por favor pruebe nuevamente en unos minutos"
+    },
+    "login": {
+      "button": {
+        "submit": "Ingresar"
+      },
+      "input": {
+        "password": "Contraseña",
+        "username": "Usuario"
+      }
+    }
+  },
+  "footer": {
+    "copyright": "© 2020 Athena Software"
+  }
+}

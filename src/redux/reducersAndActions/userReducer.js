@@ -3,10 +3,10 @@
  */
 const userDraft = {
   username: undefined,
+  profile: {},
   name: undefined,
   isLoggedIn: false,
-  error: undefined,
-  subscriptions: []
+  error: undefined
 }
 
 /**
@@ -24,8 +24,8 @@ const userReducer = (state = userDraft, action) => {
       return {...state, error: action.error}
     case "SET_NAME":
       return {...state, name: action.name}
-    case "SET_SUBSCRIPTIONS":
-      return {...state, subscriptions: action.subscriptions}
+    case "SET_PROFILE":
+      return {...state, profile: action.profile}
     default:
       return {...state}
   }
@@ -47,9 +47,9 @@ const userActions = {
     type: "SET_IS_LOGGED_IN",
     isLoggedIn
   }),
-  setSubscriptions: (subscriptions) => ({
-    type: "SET_SUBSCRIPTIONS",
-    subscriptions
+  setProfile: (profile) => ({
+    type: "SET_PROFILE",
+    profile
   }),
   setError: (error) => ({
     type: "SET_ERROR",

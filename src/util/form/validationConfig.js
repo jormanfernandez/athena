@@ -1,3 +1,5 @@
+import { textHelper } from "util/textHelper";
+
 export const validationConfig = {
   "username": {
     "minLength": 3,
@@ -12,14 +14,6 @@ export const validationConfig = {
 }
 
 export const validationMessages = {
-  "username": {
-    "minLength": "El nombre de usuario debe tener minimo 3 caracteres",
-    "maxLength": "El nombre de usuario debe tener maximo 15 caracteres",
-    "required": "Debe introducir su usuario",
-  },
-  "password": {
-    "password": "La contraseña no cumple con el formato requerido",
-    "required": "Debe introducir una contraseña",
-    "minLength": "La contraseña debe tener minimo 8 caracteres"
-  }
+  "username": textHelper("content", "formValidations", "username"),
+  "password": textHelper("content", "formValidations", "password")
 }
