@@ -1,15 +1,17 @@
-const detectPath = () => {
+import { siteDetails } from "util/site";
+
+const detectBasePath = () => {
+  const { originAddress, defaultLanguage } = siteDetails();
   const uri = window.location.href;
-  const origin = window.location.origin;
-  const base = uri.replace(origin, "").split("/")[1];
+  const base = uri.replace(originAddress, "").split("/")[1];
 
   switch(base) {
     case "es":
       return `/${base}`;
     default:
-      window.location.href = `${window.location.origin}/es`
+      window.location.href = `${originAddress}/${defaultLanguage}`
       return undefined;
   }
 }
 
-export const basePath = detectPath();
+export const basePath = detectBasePath();
