@@ -7,6 +7,7 @@
   },
   "content": {
     "languageSelector": "Lang",
+    "notFound": "No hemos encontrado la página a la que intentas acceder",
     "formValidations": {
       "username": {
         "minLength": "El nombre de usuario debe tener minimo 3 caracteres",
