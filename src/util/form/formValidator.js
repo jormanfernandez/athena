@@ -2,7 +2,7 @@ import { validationConfig, validationMessages } from "util/form/validationConfig
 import { validationMethods } from "util/form/validationMethods";
 
 const runValidations = (value, validations, messages) => {
-  let result = true;
+  let result;
   for (let method in validations) {
     const condition = validations[method];
     const validate = validationMethods[method](value, condition);
@@ -28,16 +28,9 @@ export const formValidator = values => {
 
 export const validateField = field => {
   return value => {
-    let error = true;
-
     if (!validationConfig[field]) {
-      return error;
+      return false;
     }
-    const isValid = runValidations(value, validationConfig[field], validationMessages[field]);
-    if (isValid !== true) {
-      error = isValid;
-    }
-
-    return error;
+    return runValidations(value, validationConfig[field], validationMessages[field]);
   }
 }

@@ -8,7 +8,7 @@ import { userStoreView } from "redux/storeViews/userStoreView";
 import { Header } from "views/components/Header";
 import { Footer } from "views/components/Footer";
 import { ErrorMessage } from "views/components/ErrorMessage";
-import { FormErrorField } from "views/components/FormErrorField";
+import { FormField } from "views/components/FormField";
 import { Loading } from "views/components/Loading";
 import { validateField } from "util/form/formValidator";
 import { textHelper } from "util/textHelper";
@@ -46,10 +46,13 @@ const LoginForm = () => {
               validate={validateField("username")}
               >
               {({ input, meta }) => (
-                <div>
-                  <input {...input} type="text" placeholder={textHelper("content", "login", "input", "username")} disabled={submitting}/>
-                  {<FormErrorField input={input} meta={meta}/>}
-                </div>
+                <FormField
+                  input={input}
+                  meta={meta}
+                  type="text" 
+                  placeholder={textHelper("content", "login", "input", "username")} 
+                  disabled={submitting}
+                />
               )}
             </Field>
             <Field 
@@ -57,10 +60,13 @@ const LoginForm = () => {
               validate={validateField("password")}
               >
               {({ input, meta }) => (
-                <div>
-                  <input {...input} type="password" placeholder={textHelper("content", "login", "input", "password")} disabled={submitting}/>
-                  {<FormErrorField input={input} meta={meta}/>}
-                </div>
+                <FormField
+                  input={input}
+                  meta={meta}
+                  type="password" 
+                  placeholder={textHelper("content", "login", "input", "password")} 
+                  disabled={submitting}
+                />
               )}
             </Field>
             <br/>
