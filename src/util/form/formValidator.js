@@ -41,5 +41,3 @@ export const validateField = field => {
     return error;
   }
 }
-
-export const showErrorField = (input, meta) => input.value && meta.error && meta.touched;

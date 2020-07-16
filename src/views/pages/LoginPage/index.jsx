@@ -8,8 +8,9 @@ import { userStoreView } from "redux/storeViews/userStoreView";
 import { Header } from "views/components/Header";
 import { Footer } from "views/components/Footer";
 import { ErrorMessage } from "views/components/ErrorMessage";
+import { ErrorFieldMessage } from "views/components/ErrorFieldMessage";
 import { Loading } from "views/components/Loading";
-import { validateField, showErrorField } from "util/form/formValidator";
+import { validateField } from "util/form/formValidator";
 import { textHelper } from "util/textHelper";
 
 import "./_style.scss";
@@ -47,7 +48,7 @@ const LoginForm = () => {
               {({ input, meta }) => (
                 <div>
                   <input {...input} type="text" placeholder={textHelper("content", "login", "input", "username")} disabled={submitting}/>
-                  {showErrorField(input, meta) && <ErrorMessage error={meta.error}/>}
+                  {<ErrorFieldMessage input={input} meta={meta}/>}
                 </div>
               )}
             </Field>
@@ -58,7 +59,7 @@ const LoginForm = () => {
               {({ input, meta }) => (
                 <div>
                   <input {...input} type="password" placeholder={textHelper("content", "login", "input", "password")} disabled={submitting}/>
-                  {showErrorField(input, meta) && <ErrorMessage error={meta.error}/>}
+                  {<ErrorFieldMessage input={input} meta={meta}/>}
                 </div>
               )}
             </Field>
