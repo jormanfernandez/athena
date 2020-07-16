@@ -1,19 +1,3 @@
-export const validationMethods = {
-  required: requiredValidator,
-  notWhiteSpace: notWhiteSpaceValidator,
-  notWhiteSpaceSearch: notWhiteSpaceSearchValidator,
-  hasValue: hasValueValidator,
-  regexValidator: regexValidator,
-  email: emailValidator,
-  minLength: minLengthValidator,
-  maxLength: maxLengthValidator,
-  exactLength: lengthValidator,
-  number: numberValidator,
-  phone: phoneValidator,
-  name: nameValidator,
-  password: passwordValidator,
-};
-
 const requiredValidator = (value, isRequired) => {
   return !isRequired || (value ?? "").toString().length > 0;
 }
@@ -79,3 +63,19 @@ const passwordValidator = (value) => {
     value
   );
 }
+
+export const validationMethods = {
+  required: requiredValidator,
+  notWhiteSpace: notWhiteSpaceValidator,
+  notWhiteSpaceSearch: notWhiteSpaceSearchValidator,
+  hasValue: hasValueValidator,
+  regexValidator: regexValidator,
+  email: emailValidator,
+  minLength: minLengthValidator,
+  maxLength: maxLengthValidator,
+  exactLength: lengthValidator,
+  number: numberValidator,
+  phone: phoneValidator,
+  name: nameValidator,
+  password: passwordValidator,
+};
