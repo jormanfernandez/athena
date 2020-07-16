@@ -14,49 +14,49 @@ export const validationMethods = {
   password: passwordValidator,
 };
 
-function requiredValidator(value, isRequired) {
+const requiredValidator = (value, isRequired) => {
   return !isRequired || (value ?? "").toString().length > 0;
 }
 
-function notWhiteSpaceSearchValidator(value, isRequired) {
+const notWhiteSpaceSearchValidator = (value, isRequired) => {
   return !isRequired || (value ?? "").toString().trim().length > 2;
 }
 
-function notWhiteSpaceValidator(value) {
+const notWhiteSpaceValidator = (value) => {
   return /^[A-Za-z0-9$@#%^$<>.,!%*?&\-_~`()+={}[\]|:;"'/]*$/.test(value);
 }
 
-function hasValueValidator(value, constant) {
+const hasValueValidator = (value, constant) => {
   return value === constant;
 }
 
-function regexValidator(value, regex) {
+const regexValidator = (value, regex) => {
   return regex.test(value);
 }
 
-function emailValidator(value) {
+const emailValidator = (value) => {
   return /^(\s*)([a-zA-Z0-9_\-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)(\s*)$/.test(
     value
   );
 }
 
-function minLengthValidator(value, minLength) {
+const minLengthValidator = (value, minLength) => {
   return (value ?? "").length >= minLength;
 }
 
-function maxLengthValidator(value, maxLength) {
+const maxLengthValidator = (value, maxLength) => {
   return (value ?? "").length <= maxLength;
 }
 
-function lengthValidator(value, length) {
+const lengthValidator = (value, length) => {
   return (value ?? "").length === length;
 }
 
-function numberValidator(value) {
+const numberValidator = (value) => {
   return /^(?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test(value);
 }
 
-function phoneValidator(value) {
+const phoneValidator = (value) => {
   // (ddd) ddd-dddd or ddd-ddd-dddd]
   if (!/^(1-?)?(\([2-9]\d{2}\)|[2-9]\d{2})[- ]?[2-9]\d{2}-?\d{4}$/.test(value)) {
     return false;
@@ -70,11 +70,11 @@ function phoneValidator(value) {
   );
 }
 
-function nameValidator(value) {
+const nameValidator = (value) => {
   return /^[a-zA-Z áéíóúÁÉÍÓÚäëïöüÄËÏÖÜñÑ]*$/.test(value);
 }
 
-function passwordValidator(value) {
+const passwordValidator = (value) => {
   return /^(?=.*[A-Z])(?=.*\d)(?=.*[$@#%^$<>.,!%*?&\-_~`()+={}[\]|:;"'/])[A-Za-z\d$@#%^$<>.,!%*?&\-_~`()+={}[\]|:;"'/]+$/g.test(
     value
   );

@@ -14,4 +14,4 @@ export const Loading = ({ center }) => (
       </div>
     </div>
   </div>
-)
+);

@@ -5,4 +5,4 @@ import { siteReducer } from "redux/reducersAndActions/siteReducer";
 export const combinedReducers = combineReducers({
   user: userReducer,
   site: siteReducer
-})
+});

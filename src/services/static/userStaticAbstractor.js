@@ -1,4 +1,5 @@
 import { simulateResponse } from "services/static/simulateResponse";
+
 export const userAbstractor = {
   kind: "static",
   authenticate
