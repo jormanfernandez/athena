@@ -1,7 +1,7 @@
 import React from "react";
-import { useOperator } from "redux/util/useOperator";
 import { Form, Field } from "react-final-form";
 import { onFormSubmit } from "util/form/onFormSubmit";
+import { useOperator } from "redux/util/useOperator";
 import { getUserOperator } from "redux/operators/userOperator";
 import { combineStoreViews, useStoreSelector } from "redux/util/storeHelpers";
 import { userStoreView } from "redux/storeViews/userStoreView";
