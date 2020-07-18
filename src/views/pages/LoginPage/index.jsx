@@ -70,7 +70,6 @@ const LoginForm = () => {
               )}
             </Field>
             <br/>
-            
             {submitting ? <Loading center={true}/> : (
               <button 
                 disabled={submitting || pristine || invalid}

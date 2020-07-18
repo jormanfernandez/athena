@@ -5,6 +5,6 @@
  *                        Else<React.Component> JSX Component to be rendered when a false value is in the conditions
  *                        children<function> React.Component enclosed in a function. This to prevent previous rendering from the component calling it
  */
-export function If({ Conditions, Else, children }) {
-  return Conditions.includes(false) ? Else : children();
-}
+export const If = ({ Conditions, Else, children }) => (
+  Conditions.includes(false) ? Else : children()
+);
