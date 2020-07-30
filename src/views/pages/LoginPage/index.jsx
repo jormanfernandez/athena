@@ -26,7 +26,7 @@ export const LoginPage = () => (
 /**
  * Login Form using React Final Form and React-Redux Hook to get data from the store
  * It also uses operators to mutate this same data when the form is sent
- * @returns {jsx} It returns a functional component
+ * @returns {JSX.Element} It returns a functional component
  */
 const LoginForm = () => {
   const { error } = useStoreSelector(userSelector);
