@@ -3,8 +3,10 @@
  */
 const userDraft = {
   username: undefined,
-  profile: {},
+  dni: undefined,
+  profile: undefined,
   name: undefined,
+  active: undefined,
   isLoggedIn: false,
   error: undefined
 }
@@ -18,14 +20,18 @@ const userReducer = (state = userDraft, action) => {
   switch(action.type) {
     case "SET_USERNAME":
       return { ...state, username: action.username}
+    case "SET_DNI":
+      return { ...state, dni: action.dni}
+    case "SET_PROFILE":
+      return {...state, profile: action.profile}
+    case "SET_NAME":
+      return {...state, name: action.name}
+    case "SET_ACTIVE":
+      return {...state, active: action.active}
     case "SET_IS_LOGGED_IN":
       return { ...state, isLoggedIn: action.isLoggedIn}
     case "SET_ERROR":
       return {...state, error: action.error}
-    case "SET_NAME":
-      return {...state, name: action.name}
-    case "SET_PROFILE":
-      return {...state, profile: action.profile}
     default:
       return {...state}
   }
@@ -39,17 +45,25 @@ const userActions = {
     type: "SET_USERNAME",
     username
   }),
-  setName: (name) => ({
-    type: "SET_NAME",
-    name
-  }),
-  setIsLoggedIn: (isLoggedIn) => ({
-    type: "SET_IS_LOGGED_IN",
-    isLoggedIn
+  setDni: (dni) => ({
+    type: "SET_DNI",
+    dni
   }),
   setProfile: (profile) => ({
     type: "SET_PROFILE",
     profile
+  }),
+  setName: (name) => ({
+    type: "SET_NAME",
+    name
+  }),
+  setActive: (active) => ({
+    type: "SET_ACTIVE",
+    active
+  }),
+  setIsLoggedIn: (isLoggedIn) => ({
+    type: "SET_IS_LOGGED_IN",
+    isLoggedIn
   }),
   setError: (error) => ({
     type: "SET_ERROR",

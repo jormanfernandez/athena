@@ -6,7 +6,7 @@ import { useSelector, shallowEqual } from 'react-redux';
  * @returns {object} An object with the data selected
  */
 export function useStoreSelector(selector) {
-  return useSelector(selector, shallowEqual)
+  return useSelector(selector, shallowEqual);
 }
 
 /**
