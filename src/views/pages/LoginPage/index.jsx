@@ -15,10 +15,6 @@ import { textHelper } from "util/textHelper";
 
 import "./_style.scss";
 
-/**
- * Component to be connected with redux. The name works as an identifier of the redux component
- * @returns {jsx} It returns a React Component in JSX format
- */
 export const LoginPage = () => (
   <>
     <Header/>
@@ -28,7 +24,8 @@ export const LoginPage = () => (
 );
 
 /**
- * Content summary that can be included in the redux component
+ * Login Form using React Final Form and React-Redux Hook to get data from the store
+ * It also uses operators to mutate this same data when the form is sent
  * @returns {jsx} It returns a functional component
  */
 const LoginForm = () => {
