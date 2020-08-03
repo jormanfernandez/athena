@@ -1,3 +1,5 @@
+import { contain } from "redux/util/contain";
+
 /**
  * Initial data for the reducer
  */
@@ -16,26 +18,31 @@ const userDraft = {
  * @param {object} state Redux state to be modified in a no mutation way
  * @param {object} action  {type: string, ...} It contains mostly two fields. Type, which indicates the action to be done, and the payload which will be the data modified in the store
  */
-const userReducer = (state = userDraft, action) => {
+const userReducer = contain((userDraft, action) => {
+  // eslint-disable-next-line default-case
   switch(action.type) {
     case "SET_USERNAME":
-      return { ...state, username: action.username}
+      userDraft.username = action.username;
+      break;
     case "SET_DNI":
-      return { ...state, dni: action.dni}
+      userDraft.dni = action.dni;
+      break;
     case "SET_PROFILE":
-      return {...state, profile: action.profile}
+      userDraft.profile = action.profile;
+      break;
     case "SET_NAME":
-      return {...state, name: action.name}
+      userDraft.name = action.name;
+      break;
     case "SET_ACTIVE":
-      return {...state, active: action.active}
+      userDraft.active = action.active;
+      break;
     case "SET_IS_LOGGED_IN":
-      return { ...state, isLoggedIn: action.isLoggedIn}
-    case "SET_ERROR":
-      return {...state, error: action.error}
-    default:
-      return {...state}
+      userDraft.isLoggedIn = action.isLoggedIn;
+      break;
+    case "SET_USER_ERROR":
+      userDraft.error = action.error;
   }
-}
+}, userDraft);
 
 /**
  * Actions to be executed when dispatch is called. This ones are received in the reducer function to update the store state
@@ -66,7 +73,7 @@ const userActions = {
     isLoggedIn
   }),
   setError: (error) => ({
-    type: "SET_ERROR",
+    type: "SET_USER_ERROR",
     error
   })
 }

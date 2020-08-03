@@ -1,3 +1,5 @@
+import { contain } from "redux/util/contain";
+
 /**
  * Initial data for the reducer
  */
@@ -14,29 +16,33 @@ const invoicesDraft = {
  * @param {object} state Redux state to be modified in a no mutation way
  * @param {object} action  {type: string, ...} It contains mostly two fields. Type, which indicates the action to be done, and the payload which will be the data modified in the store
  */
-const invoicesReducer = (state = invoicesDraft, action) => {
+const invoicesReducer = contain((invoicesDraft, action) => {
+  // eslint-disable-next-line default-case
   switch(action.type) {
-    case "SET_ERROR":
-      return { ...state, error: action.error}
+    case "SET_INVOICE_ERROR":
+      invoicesDraft.error = action.error;
+      break;
     case "SET_INVOICES":
-        return { ...state, invoices: action.invoices}
+      invoicesDraft.invoices = action.invoices;
+      break;
     case "SET_CURRENT_INVOICE":
-        return { ...state, currentInvoice: action.currentInvoice}
+      invoicesDraft.currentInvoice = action.currentInvoice;
+      break;
     case "SET_IS_NEW":
-        return { ...state, isNew: action.isNew}
+      invoicesDraft.isNew = action.isNew;
+      break;
     case "SET_INVOICES_STATUS_LIST":
-        return { ...state, statusList: action.statusList}
-    default:
-      return {...state}
+      invoicesDraft.statusList = action.statusList;
+      break;
   }
-}
+}, invoicesDraft);
 
 /**
  * Actions to be executed when dispatch is called. This ones are received in the reducer function to update the store state
  */
 const invoicesActions = {
   setError: (error) => ({
-    type: "SET_ERROR",
+    type: "SET_INVOICE_ERROR",
     error
   }),
   setInvoices: (invoices) => ({
