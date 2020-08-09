@@ -7,8 +7,8 @@
  */
 export const contain = (callback, draftState) => {
   return (state = draftState, action) => {
-    let innerState = {...state};
-    callback(innerState, action);
-    return innerState;
+    let mutableState = {...state};
+    callback(mutableState, action);
+    return mutableState;
   }
 }

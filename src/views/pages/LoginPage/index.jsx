@@ -85,7 +85,7 @@ const LoginForm = () => {
 
 const userSelector = combineStoreViews({
   error: store => userStoreView.getError(store)
-})
+});
 
 const useUserOperator = () => {
   const userOperator = useOperator(getUserOperator);
