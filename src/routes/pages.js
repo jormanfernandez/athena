@@ -1,3 +1,5 @@
+import { onAdminOrganizationMount } from "routes/onAdminOrganizationMount";
+
 /**
  * It returns the path to the component for the router
  * @param {object} Page {path: string, exact: boolean} Page to route
@@ -24,13 +26,20 @@ export const getLink = (page, keys) => {
 }
 
 /**
- * The idea is to call it when a Page is being mounted in the root page
- * @param {object} param {dataFetch} Function to be executed 
+ * Based on the pathname of a given location, detects which page it is
+ * @param {object} location from useLocation
+ * @returns {object}
  */
-export const onMounted = ({dataFetch}) => {
-  if (dataFetch) {
-    dataFetch();
+export const getPageByLocation = location => {
+  let page;
+  for (const key in PAGES) {
+    if (location.pathname !== PAGES[key].path) {
+      continue;
+    }
+    page = PAGES[key];
+    break;
   }
+  return page;
 }
 
 /**
@@ -41,10 +50,12 @@ export const onMounted = ({dataFetch}) => {
 export const PAGES = {
   login: {
     path: "/",
+    exact: true
+  },
+  adminOrganization: {
+    path: "/admin/organization",
     exact: true,
-    dataFetch: async () => {
-      console.log("Login Mounted");
-    } 
+    onMount: onAdminOrganizationMount
   },
   styleguide: {
     path: "/styleguide",

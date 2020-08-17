@@ -1,9 +1,9 @@
-export const userAbstractor = {
+export const organizationAbstractor = {
   kind: "dynamic",
-  authenticate
+  getOrganizationInfo
 }
 
-function authenticate(username, password) {
+function getOrganizationInfo() {
   return new Promise((resolve, reject) => {
     reject({
       success: false,
