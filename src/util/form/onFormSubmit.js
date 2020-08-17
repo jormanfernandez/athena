@@ -5,9 +5,10 @@ export const onFormSubmit = operatorMethod => {
   return async values => {
     try {
       const TIME_CHECK = 100;
-      const time = +(new Date());
+      const msBefore = +(new Date());
       await operatorMethod(values);
-      if ((+(new Date()) - time) < TIME_CHECK) {
+      const msAfter = +(new Date());
+      if ((msAfter - msBefore) < TIME_CHECK) {
         await sleep(TIME_CHECK);
       }
       return undefined;
