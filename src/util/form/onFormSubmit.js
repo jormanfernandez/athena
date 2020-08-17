@@ -1,14 +1,15 @@
 import { FORM_ERROR } from "final-form";
 
-export const onFormSubmit = (operatorMethod, successCallback = () => {}) => {
-  return values => {
-    return operatorMethod(values).then(successValue => {
-      successCallback(successValue);
+// FIXME: Why the forms after a second submit is not returning to its initial state?
+export const onFormSubmit = operatorMethod => {
+  return async values => {
+    try { 
+      await operatorMethod(values);
       return undefined;
-    }).catch(error => {
-      const { "general_error": generalErrorMessage, ...errorMessagesToPass } = error.errorsMap;
+    } catch (e) {
+      const { "general_error": generalErrorMessage, ...errorMessagesToPass } = e.errorsMap;
       errorMessagesToPass[FORM_ERROR] = generalErrorMessage;
       return errorMessagesToPass;
-    })
+    }
   };
 }
