@@ -8,6 +8,6 @@ function authenticate(username, password) {
     reject({
       success: false,
       errorCode: "E01"
-    })
-  })
+    });
+  });
 }
