@@ -1,5 +1,7 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
+import { FormField } from "views/components/FormField";
+import { validateField } from "util/form/formValidator";
 import { onFormSubmit } from "util/form/onFormSubmit";
 import { useOperator } from "redux/util/useOperator";
 import { getUserOperator } from "redux/operators/userOperator";
@@ -8,9 +10,7 @@ import { userStoreView } from "redux/storeViews/userStoreView";
 import { Header } from "views/components/Header";
 import { Footer } from "views/components/Footer";
 import { ErrorMessage } from "views/components/ErrorMessage";
-import { FormField } from "views/components/FormField";
 import { Loading } from "views/components/Loading";
-import { validateField } from "util/form/formValidator";
 import { textHelper } from "util/textHelper";
 
 import "./_style.scss";
