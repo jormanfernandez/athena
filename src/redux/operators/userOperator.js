@@ -1,7 +1,9 @@
 import { userAbstractor } from "services/userAbstractor";
 import { userActions } from "redux/reducersAndActions/userReducer";
 import { logError } from "redux/util/logError";
-import { getMessage } from "util/errorCodes";
+import { getError } from "util/errorCodes";
+import { PAGES } from "routes/pages";
+import { redirect } from "routes/helpers";
 
 let userOperator = null;
 /**
@@ -23,14 +25,15 @@ class UserOperator {
 
   login = async ({username, password}) => {
     if (!username || !password) {
-      this.store.dispatch(userActions.setError(getMessage("UE01")));
+      this.store.dispatch(userActions.setError(getError("UE01")));
       return;
     }
     this.store.dispatch(userActions.setError(undefined));
     try {
       const { success, errorCode, user} = await userAbstractor.authenticate(username, password);
+
       if (!success) {
-        this.store.dispatch(userActions.setError(getMessage(errorCode)));
+        this.store.dispatch(userActions.setError(getError(errorCode)));
         return;
       }
 
@@ -40,10 +43,11 @@ class UserOperator {
         userActions.setName(`${user.details.name} ${user.details.lastname}`),
         userActions.setIsLoggedIn(true)
       ]);
-      // FIXME: Apply redirection to dashboard
+
+      redirect(PAGES.adminOrganization);
     } catch (err) {
       logError(this.store, "UserOperator.login: Error in promise", err);
-      this.store.dispatch(userActions.setError(getMessage()));
+      this.store.dispatch(userActions.setError(getError()));
     }
   }
 }
