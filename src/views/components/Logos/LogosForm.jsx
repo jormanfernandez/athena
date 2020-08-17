@@ -61,7 +61,6 @@ export const LogosForm = ({ operator, removeLogo, logo }) => {
               )}
             </Field>
             <br/>
-            {console.log(submitting)}
             {submitting ? <Loading center={true}/> : (
               <button 
                 disabled={submitting || invalid}
