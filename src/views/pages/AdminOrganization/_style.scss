@@ -1,0 +1,21 @@
+@import "./../../../scss/mixins";
+
+.admin-dashboard {
+  form {
+    width: $space-7;
+    input {
+      padding: 0 $space-1;
+    }
+  }
+
+  .container {
+    background-color: $background-color-2;
+    border-radius: 6px;
+    padding: $space-1;
+    margin: $space-1 auto;
+  }
+
+  .close {
+    cursor: pointer;
+  }
+}
