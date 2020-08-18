@@ -3,7 +3,6 @@ import { FormErrorField } from "views/components/FormErrorField";
 import { textHelper } from "util/textHelper";
 import { If } from "views/components/If";
 
-// FIXME: Style a little bit better the File Input on forms
 export const FormFileField = React.memo(({input, meta, setFile, ...props}) => {
   const [fileName, setFileName] = useState(undefined);
   const onChange = ({ target: { files }}) => {
