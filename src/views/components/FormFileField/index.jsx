@@ -6,9 +6,9 @@ import { If } from "views/components/If";
 export const FormFileField = React.memo(({input, meta, setFile, ...props}) => {
   const [fileNames, setFileNames] = useState([]);
   const onChange = ({ target: { files }}) => {
-    setFile(files);
     const names = Array.from(files).map(file => file.name);
     setFileNames(names);
+    setFile(files);
   };
   return (
     <div className="row">
