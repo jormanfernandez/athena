@@ -1,5 +1,4 @@
 import React from "react";
-import { textHelper } from "util/textHelper";
 import { organizationStoreView } from "redux/storeViews/organizationStoreView";
 import { getOrganizationOperator } from "redux/operators/organizationOperator";
 import { combineStoreViews, useStoreSelector } from "redux/util/storeHelpers";
@@ -16,7 +15,6 @@ export const Logos = () => {
 
   return (
     <div className="container">
-      <p>{textHelper("content", "logos", "title")}</p>
       <If Conditions={[logos.length > 0]} Else={<></>}>
         {() => <LogoList logos={logos}/>}
       </If>

@@ -8,6 +8,10 @@
     }
   }
 
+  & > button {
+    margin-bottom: $space-2;
+  }
+
   .container {
     background-color: $background-color-2;
     border-radius: 6px;

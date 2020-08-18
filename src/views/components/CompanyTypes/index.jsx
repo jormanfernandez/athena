@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { textHelper } from "util/textHelper";
 import { organizationStoreView } from "redux/storeViews/organizationStoreView";
 import { getOrganizationOperator } from "redux/operators/organizationOperator";
 import { combineStoreViews, useStoreSelector } from "redux/util/storeHelpers";
@@ -26,7 +25,6 @@ export const CompanyTypes = () => {
 
   return (
     <div className="container">
-      <p>{textHelper("content", "companyTypes", "title")}</p>
       <If Conditions={[companyTypes.length > 0]} Else={<></>}>
         {() => <CompanyTypesList companyTypes={companyTypes} onChoose={setCompanyType}/>}
       </If>

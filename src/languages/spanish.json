@@ -11,7 +11,9 @@
       "off": "No"
     },
     "button": {
-      "file": "Elegir archivo"
+      "file": "Elegir archivo",
+      "show": "Mostrar",
+      "hide": "Ocultar"
     },
     "languageSelector": "Lang",
     "notFound": "No hemos encontrado la página a la que intentas acceder",

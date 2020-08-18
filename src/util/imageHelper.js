@@ -16,3 +16,12 @@ export const createBase64ImageFromFile = (file, callback = () => {}) => {
 
   reader.readAsDataURL(file);
 }
+
+/**
+ * Creates the base64 src for the img
+ * @param {object} source {contentType: {string}, data: {string}}
+ */
+export const createRawImageDataFromSource = source => {
+  let base64 = `data:${source.contentType};base64,${source.data}`;
+  return base64;
+}
