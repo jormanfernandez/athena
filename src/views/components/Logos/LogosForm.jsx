@@ -8,7 +8,7 @@ import { validateField } from "util/form/formValidator";
 import { onFormSubmit } from "util/form/onFormSubmit";
 import { Loading } from "views/components/Loading";
 
-export const LogosForm = ({ operator, removeLogo, logo }) => {
+export const LogosForm = ({ operator, logo }) => {
   const onSubmitForm = wrapOperatorMethod(operator.saveLogo);
   return (
     <Form
@@ -16,7 +16,6 @@ export const LogosForm = ({ operator, removeLogo, logo }) => {
         render={({ handleSubmit, submitting, form, invalid }) => (
           <form onSubmit={handleSubmit}>
             <br/>
-            <i onClick={() => removeLogo(form)} className="close material-icons">close</i>
             <Field 
               name="image"
               type="file"

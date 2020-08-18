@@ -36,6 +36,7 @@ class OrganizationOperator {
     this.store.dispatch(organizationActions.setLogosError(undefined));
 
     if (active === undefined || !image) {
+      this.store.dispatch(organizationActions.setLogosError(getError()));
       return;
     } 
 

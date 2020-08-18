@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { textHelper } from "util/textHelper";
 import { organizationStoreView } from "redux/storeViews/organizationStoreView";
 import { getOrganizationOperator } from "redux/operators/organizationOperator";
@@ -13,25 +13,15 @@ import { LogoList } from "views/components/Logos/LogoList";
 export const Logos = () => {
   const organizationOperator = useOrganizationOperator();
   const { logos, error } = useStoreSelector(logosSelector);
-  const [ logo, setLogo ] = useState(undefined);
-  const removeLogo = (form) => {
-    setLogo(undefined);
-    if (!form)
-      return;
-    
-    for (const key in form.getState().modified) {
-      form.change(key, undefined);
-    }
-  };
 
   return (
     <div className="container">
       <p>{textHelper("content", "logos", "title")}</p>
       <If Conditions={[logos.length > 0]} Else={<></>}>
-        {() => <LogoList logos={logos} onChoose={setLogo}/>}
+        {() => <LogoList logos={logos}/>}
       </If>
       {error && <ErrorMessage error={error}/>}
-      <LogosForm removeLogo={removeLogo} operator={organizationOperator} logo={logo}/>
+      <LogosForm operator={organizationOperator}/>
     </div>
   );
 }

@@ -10,6 +10,9 @@
       "on": "Si",
       "off": "No"
     },
+    "button": {
+      "file": "Elegir archivo"
+    },
     "languageSelector": "Lang",
     "notFound": "No hemos encontrado la página a la que intentas acceder",
     "locals": {
