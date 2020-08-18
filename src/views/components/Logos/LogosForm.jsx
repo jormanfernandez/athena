@@ -27,6 +27,7 @@ export const LogosForm = ({ operator, logo }) => {
                   input={input}
                   meta={meta}
                   setFile={operator.setLogoOnForm}
+                  accept="image/*"
                   placeholder={textHelper("content", "logos", "input", "image")} 
                   disabled={submitting}
                 />

@@ -4,24 +4,23 @@ import { textHelper } from "util/textHelper";
 import { If } from "views/components/If";
 
 export const FormFileField = React.memo(({input, meta, setFile, ...props}) => {
-  const [fileName, setFileName] = useState(undefined);
+  const [fileNames, setFileNames] = useState([]);
   const onChange = ({ target: { files }}) => {
     setFile(files);
-    setFileName(files[0].name);
+    let names = [];
+    for (const file of files) {
+      names.push(file.name);
+    }
+    setFileNames(names);
   };
   return (
     <div className="row">
       <div className="col s12">
         <div className="input-field">
-          <label>
+          <label className="file-field">
             <span className="btn waves-effect waves-light">{textHelper("content", "button", "file")}</span>
-            <If Conditions={[!!fileName]} Else={<></>}>
-              {() => (
-              <span className="file-field">
-                <i className="material-icons">attachment</i>
-                {fileName}
-              </span>
-            )}
+            <If Conditions={[fileNames.length > 0]} Else={<></>}>
+              {() => fileNames.map((name, idx) => <FileName name={name} key={idx}/>)}
             </If>
             <input {...input} {...props} onChange={onChange} className="hide"/>
           </label>
@@ -32,3 +31,12 @@ export const FormFileField = React.memo(({input, meta, setFile, ...props}) => {
     </div>
   )
 });
+
+const FileName = ({name}) => (
+  <aside>
+    <span>
+      <i className="material-icons">attachment</i>
+      {name}
+    </span>
+  </aside>
+);

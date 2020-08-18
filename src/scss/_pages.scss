@@ -18,9 +18,13 @@ main.wrapper {
   @include inline-message($warning-color-1, $warning-color-1);
 }
 
-.file-field {
-  cursor: pointer;
-  padding-left: $space-1;
+.input-field > .file-field {
+  position: relative;
+  display: inline-grid;
+  
+  aside  {
+    cursor: pointer;
+  }
 }
 
 .container > * {
