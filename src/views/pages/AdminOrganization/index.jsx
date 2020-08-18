@@ -22,9 +22,9 @@ export const AdminOrganization = () => {
 
 const AdminSummary = () => {
   const [displays, setDisplays] = useState({
-    locals: true,
+    paymentMethods: true,
+    locals: false,
     companyTypes: false,
-    paymentMethods: false,
     logos: false,
   });
   const toggle = field => {
@@ -35,6 +35,16 @@ const AdminSummary = () => {
   return (
     <main className="wrapper container admin-dashboard">
       {textHelper("content", "adminOrganization", "title")}
+      <hr/>
+      <p>{textHelper("content", "paymentMethods", "title")}</p>
+      <button className="btn waves-effect waves-light" onClick={() => toggle("paymentMethods")}>
+        {textHelper("content", "button", !displays.paymentMethods ? "show" : "hide")}
+      </button>
+      <div className={classNames({
+        hide: !displays.paymentMethods
+      })}>
+        <PaymentMethods/>
+      </div>
       <hr/>
       <p>{textHelper("content", "locals", "title")}</p>
       <button className="btn waves-effect waves-light" onClick={() => toggle("locals")}>
@@ -54,16 +64,6 @@ const AdminSummary = () => {
         hide: !displays.companyTypes
       })}>
         <CompanyTypes/>
-      </div>
-      <hr/>
-      <p>{textHelper("content", "paymentMethods", "title")}</p>
-      <button className="btn waves-effect waves-light" onClick={() => toggle("paymentMethods")}>
-        {textHelper("content", "button", !displays.paymentMethods ? "show" : "hide")}
-      </button>
-      <div className={classNames({
-        hide: !displays.paymentMethods
-      })}>
-        <PaymentMethods/>
       </div>
       <hr/>
       <p>{textHelper("content", "logos", "title")}</p>
