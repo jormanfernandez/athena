@@ -14,7 +14,7 @@ export const getRoute = ({path, exact}) => ({
  * For the <Link> tag, it returns the path that React Router will load
  * If any keys are passed using a dynamic path, this would be rewritten in the path returned by the function
  * @param {object} page PAGES[route] object
- * @param {object} keys Can be null. It will rewrite the elements from the path with the values of the keys
+ * @param {object} keys Can be null. It will rewrite the elements from the path with the values of the keys E.g.: ["<username>", "jota"]
  * @returns {object}
  */
 export const getLink = (page, keys) => {
