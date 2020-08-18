@@ -30,6 +30,22 @@ class OrganizationOperator {
     createBase64ImageFromFile(files[0], image => this.logoOnForm = image);
   }
 
+  changeLogoStatus = async logo => {
+    const { id, active } = logo;
+    this.store.dispatch(organizationActions.setLogosError(undefined));
+    try {
+      // FIXME: Create abstractor method
+      const { success, errorCode, logos } = await organizationAbstractor.changeLogoStatus(id, active);
+      if (!success) {
+        this.store.dispatch(organizationActions.setLogosError(getError(errorCode)));
+        return;
+      }
+      this.store.dispatch(organizationActions.setLogos(logos));
+    } catch (e) {
+      logError(this.store, "OrganizationOperator.changeLogoStatus: promise error", e);
+    }
+  }
+
   saveLogo = async (fields) => {
     const image = this.logoOnForm;
     const { active } = fields;

@@ -16,7 +16,7 @@ export const Logos = () => {
   return (
     <div className="container">
       <If Conditions={[logos.length > 0]} Else={<></>}>
-        {() => <LogoList logos={logos}/>}
+        {() => <LogoList logos={logos} operator={organizationOperator}/>}
       </If>
       {error && <ErrorMessage error={error}/>}
       <LogosForm operator={organizationOperator}/>
