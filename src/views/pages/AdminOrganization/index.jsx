@@ -41,7 +41,7 @@ const AdminSummary = () => {
         {textHelper("content", "button", !displays.paymentMethods ? "show" : "hide")}
       </button>
       <div className={classNames({
-        hide: !displays.paymentMethods
+        "hide": !displays.paymentMethods
       })}>
         <PaymentMethods/>
       </div>
@@ -51,7 +51,7 @@ const AdminSummary = () => {
         {textHelper("content", "button", !displays.locals ? "show" : "hide")}
       </button>
       <div className={classNames({
-        hide: !displays.locals
+        "hide": !displays.locals
       })}>
         <Locals/>
       </div>
@@ -61,7 +61,7 @@ const AdminSummary = () => {
         {textHelper("content", "button", !displays.companyTypes ? "show" : "hide")}
       </button>
       <div className={classNames({
-        hide: !displays.companyTypes
+        "hide": !displays.companyTypes
       })}>
         <CompanyTypes/>
       </div>
@@ -71,7 +71,7 @@ const AdminSummary = () => {
         {textHelper("content", "button", !displays.logos ? "show" : "hide")}
       </button>
       <div className={classNames({
-        hide: !displays.logos
+        "hide": !displays.logos
       })}>
         <Logos/>
       </div>

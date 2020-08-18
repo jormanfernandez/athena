@@ -36,7 +36,7 @@ export const getPageByLocation = location => {
     if (location.pathname !== PAGES[key].path) {
       continue;
     }
-    page = PAGES[key];
+    page = {...PAGES[key]};
     break;
   }
   return page;
