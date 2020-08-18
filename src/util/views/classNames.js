@@ -8,7 +8,7 @@ const computeObjectClasses = classes => {
   let assignedClasses = "";
   for (const _class in classes) {
     if (!classes[_class]) continue;
-    assignedClasses += ` ${_class}`;
+    assignedClasses += `${_class} `;
   }
   return assignedClasses;
 }
@@ -21,13 +21,7 @@ const computeObjectClasses = classes => {
  */
 const computeArrayClasses = classes => {
   let assignedClasses = "";
-  for (const element of classes) {
-    if (element instanceof Object) {
-      assignedClasses += computeObjectClasses(element);
-    } else {
-      assignedClasses += ` ${element}`;
-    }
-  }
+  classes.forEach(element => assignedClasses += element instanceof Object ? computeObjectClasses(element) : `${element} `);
   return assignedClasses;
 }
 
@@ -48,5 +42,5 @@ export const classNames = classes => {
   } else {
     assignedClasses = classes;
   }
-  return assignedClasses;
+  return assignedClasses.trimEnd();
 }
