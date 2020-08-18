@@ -7,10 +7,7 @@ export const FormFileField = React.memo(({input, meta, setFile, ...props}) => {
   const [fileNames, setFileNames] = useState([]);
   const onChange = ({ target: { files }}) => {
     setFile(files);
-    let names = [];
-    for (const file of files) {
-      names.push(file.name);
-    }
+    const names = Array.from(files).map(file => file.name);
     setFileNames(names);
   };
   return (
