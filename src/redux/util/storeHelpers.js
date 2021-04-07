@@ -6,7 +6,7 @@ import { useSelector, shallowEqual } from 'react-redux';
  * @returns {object} An object with the data selected
  */
 export function useStoreSelector(selector) {
-  return useSelector(selector, shallowEqual)
+  return useSelector(selector, shallowEqual);
 }
 
 /**
@@ -15,12 +15,12 @@ export function useStoreSelector(selector) {
  * @returns {function} Function that reads from the state the requested values
  */
 export const combineStoreViews = (views) => {
-    return (state) => {
-      let selectedViews = {};
-      for (let key in views) {
-        selectedViews[key] = views[key](state);
-      }
-      return selectedViews;
+  return (state) => {
+    let selectedViews = {};
+    for (let key in views) {
+      selectedViews[key] = views[key](state);
     }
+    return selectedViews;
   }
+}
   

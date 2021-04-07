@@ -1,14 +1,18 @@
+import { userAbstractor } from "services/userAbstractor";
 import { userActions } from "redux/reducersAndActions/userReducer";
-import { userStoreView } from "redux/storeViews/userStoreView";
+import { logError } from "redux/util/logError";
+import { getError } from "util/errorCodes";
+import { PAGES } from "routes/pages";
+import { redirect } from "routes/helpers";
 
 let userOperator = null;
 /**
  * Get the operator being used to update the store
- * @param {object} dispatch Dispatch function to redux
+ * @param {object} store Store object from redux
  */
 export const getUserOperator = (store) => {
-    if (!userOperator) userOperator = new UserOperator(store);
-    return userOperator;
+  if (!userOperator) userOperator = new UserOperator(store);
+  return userOperator;
 }
 
 /**
@@ -19,13 +23,31 @@ class UserOperator {
     this.store = store;
   }
 
-  setName = name => {
-    if (!name) {
-      return false;
+  login = async ({username, password}) => {
+    if (!username || !password) {
+      this.store.dispatch(userActions.setError(getError("UE01")));
+      return;
     }
-    /** STUB: Shows how to read data outside components */
-    const loggedName = userStoreView.username(this.store.getState());
-    console.log(loggedName);
-    this.store.dispatch(userActions.setUsername(name));
+    this.store.dispatch(userActions.setError(undefined));
+    try {
+      const { success, errorCode, user} = await userAbstractor.authenticate(username, password);
+
+      if (!success) {
+        this.store.dispatch(userActions.setError(getError(errorCode)));
+        return;
+      }
+
+      this.store.dispatch([
+        userActions.setUsername(user.username),
+        userActions.setProfile(user.details.profile),
+        userActions.setName(`${user.details.name} ${user.details.lastname}`),
+        userActions.setIsLoggedIn(true)
+      ]);
+
+      redirect(PAGES.adminOrganization);
+    } catch (err) {
+      logError(this.store, "UserOperator.login: Error in promise", err);
+      this.store.dispatch(userActions.setError(getError()));
+    }
   }
 }

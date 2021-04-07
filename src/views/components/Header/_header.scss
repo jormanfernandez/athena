@@ -1,0 +1,8 @@
+@import "./../../../scss/mixins";
+
+.header {
+  select {
+    display: inline-block;
+    margin-left: $space-1;
+  }
+}

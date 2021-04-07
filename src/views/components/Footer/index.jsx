@@ -1,10 +1,11 @@
 import React from "react";
+import { textHelper } from "util/textHelper";
 
 export const Footer = () => (
   <footer className="page-footer">
     <div className="footer-copyright">
       <div className="container">
-      <p className="center">© 2020 Athena Software</p>
+      <p className="center">{textHelper("footer", "copyright")}</p>
       </div>
     </div>
   </footer>
